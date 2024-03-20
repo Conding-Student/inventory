@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inventory System</title>
         <!-- Stylesheet -->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- Icon -->
         <link rel="icon" href="image/logo-nike.jpg" type="image/x-icon">
         <!-- Favicons -->
@@ -81,7 +81,7 @@
 
                             <li class="sidebar-item">
                                 
-                                <a href="index.html" class="sidebar-link">Inventory</a>
+                                <a href="index.php" class="sidebar-link">Inventory</a>
                                 
                             </li>
 
@@ -175,7 +175,7 @@
 
                 <div class="wrapper-bottom">
 
-                    <form action="" method="">
+                    <form action="process/product_add.php" method="post">
 
                         <div class="grid-container">
 
@@ -193,8 +193,9 @@
 
                                 </div>
 
-                                <ul class="menus">
+                                <ul class="menus" name="category">
                                     <li class="actives">Choose Product</li>
+                                  
                                     <li>Shoes</li>
                                     <li>T-Shirt</li>
                                     <li>Hoodies</li>
@@ -206,38 +207,38 @@
 
                             <div class="container">
                                 <label for="quantity" class="quantity">Quantity</label>
-                                <input type="number" class="quantity" id="quantity">
+                                <input type="number" name="quantity" class="quantity" id="quantity">
                             </div>
 
                             <div class="container">
                                 <label for="price" class="price">Price</label>
-                                <input type="number" class="price" id="price">
+                                <input type="number" name="price" class="price" id="price">
                             </div>
 
                             <div class="container">
                                 <label for="color" class="color">Color</label>
-                                <input type="text" class="color" id="color">
+                                <input type="text" name="color" class="color" id="color">
                             </div>
 
                             <div class="container">
                                 <label for="size" class="size">Size</label>
-                                <input type="text" class="size" id="size">
+                                <input type="text" name="size" class="size" id="size">
                             </div>
 
                         </div>
 
                         <div class="description">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" cols="26" rows="4"></textarea>
+                            <textarea name="description" name="description" id="description" cols="26" rows="4"></textarea>
                         </div>
 
                         <div class="upload">
                             <label for="upload">Product Image</label>
-                            <input type="file">
+                            <input type="file" name="image">
                         </div>
 
                         <div class="buttons">
-                           <button class="submit">Submit</button>
+                           <button class="submit" name="submit-button">Submit</button>
                           <button class="cancel">Cancel</button>
                         </div>
 
@@ -251,7 +252,7 @@
         </section>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="js.js"></script>
+        <script src="js/js.js"></script>
       
         
     </body>

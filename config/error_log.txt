@@ -1,0 +1,3 @@
+Data connection failed: SQLSTATE[HY000] [1049] Unknown database 'inventor'
+Data connection failed: SQLSTATE[HY000] [1049] Unknown database 'inventor'
+Data connection failed: SQLSTATE[HY000] [1045] Access denied for user 'roo'@'localhost' (using password: NO)

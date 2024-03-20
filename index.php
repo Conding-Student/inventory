@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inventory System</title>
         <!-- Stylesheet -->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- Icon -->
         <link rel="icon" href="image/logo-nike.jpg" type="image/x-icon">
         <!-- Favicons -->
@@ -189,7 +189,7 @@
                     </div>
 
                     <div class="adding">
-                        <a href="add.html"><button>Add Product</button></a>
+                        <a href="add.php"><button>Add Product</button></a>
                     </div>
 
 
@@ -384,7 +384,7 @@
         
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="main.js"></script>
+        <script src="js/main.js"></script>
 
     </body>
 
