@@ -322,11 +322,16 @@ require "config/connection.php";
                                     <input type="number" name="quantity[<?php echo $data->id;?>]" class="no-spinner" placeholder="<?php echo $data->quantity?>">
                                     <span>Quantity</span>
                                 </div>
-                                <!-- Hidden input to pass product id -->
+                                <!--pass product id for edit-->
                                 <input type="hidden" name="product_id[]" value="<?php echo $data->id;?>">
 
                                 <button class="add" type="submit" name="edit_product" value="<?php echo $data->id;?>">Submit</button>
-                                <button class="delete">Delete</button>
+                                
+                                <!--form for deleting product -->
+                                <form action="process/delete_product.php" method="post">
+                                    <input type="hidden" name="delete_product" value="<?php echo $data->id;?>">
+                                    <button class="delete" type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                </form>
                             </td>
                             
                         </tr>
