@@ -1,23 +1,3 @@
-<?php require "classes/category.php";?>
-<?php require "classes/colors.php";?>
-<?php require "classes/generic_products.php";?>
-<?php require "classes/prod_details.php";?>
-<?php require "classes/sizes.php";?>
-<?php require "config/connection.php";?>
-
-
-
-<?php
-// Create an instance of the Category class with the database connection
-$category = new Category($connection);
-$colors = new Colors($connection);
-$sizes = new Sizes($connection);
-
-// Fetch all categories
-$fetch_category = $category->getAll();
-$fetch_colors = $colors->getAll();
-$fetch_sizes = $sizes->getAll();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -187,75 +167,28 @@ $fetch_sizes = $sizes->getAll();
 
                 <div class="text-top">
                     
-                    <h1>Add Product</h1>
-                    <p>Add new type of product</p>
+                    <h1>Add Category</h1>
+                    <p>Add new Category of product</p>
                     
                 </div>
 
                 <div class="wrapper-bottom">
 
-                <form action="process/product_add.php" method="post" enctype="multipart/form-data">
-                    <div class="grid-container">
-                        <div class="container">
-                            <label for="prod-name" class="prod-name">Product Name</label>
-                            <input type="text" class="prod-name" id="prod-name" name="product_name" required>
+                    <form action="process/category_add.php" method="post">
+
+                        <div class="grid-container">
+
+                            <div class="container">
+                                <label for="prod-name" class="prod-name">Category Name</label>
+                                <input type="text" class="prod-name" id="prod-name" name="category" required>
+                            </div>
+
+                        <div class="buttons">
+                           <button class="submit" name="submit-button">Submit</button>
+                            <button class="cancel" name="cancel-button">Cancel</button>
                         </div>
 
-                        <div class="container">
-                            <label for="category" class="category">Category</label>
-                            <select name="category_id" id="category" required>
-                                <option value="">Select Category</option>
-                                <?php foreach ($fetch_category as $data) : ?>
-                                    <option value="<?php echo htmlspecialchars($data->id); ?>"><?php echo $data->category_name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="container">
-                            <label for="quantity" class="quantity">Quantity</label>
-                            <input type="number" name="quantity" class="quantity" id="quantity" required>
-                        </div>
-
-                        <div class="container">
-                            <label for="price" class="price">Price</label>
-                            <input type="number" name="price" class="price" id="price" required>
-                        </div>
-
-                        <!-- Colors Selection -->
-                        <div class="container">
-                            <label for="color" class="color">Colors</label>
-                            <?php foreach ($fetch_colors as $data) : ?>
-                                <input type="checkbox" name="color_id[]" value="<?php echo htmlspecialchars($data->id); ?>">
-                                <?php echo $data->color; ?>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <!-- Sizes Selection -->
-                        <div class="container">
-                            <label for="size" class="size">Sizes</label>
-                            <?php foreach ($fetch_sizes as $data) : ?>
-                                <input type="checkbox" name="size_id[]" value="<?php echo htmlspecialchars($data->id); ?>">
-                                <?php echo $data->size; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <div class="description">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="26" rows="4"></textarea>
-                    </div>
-
-                    <div class="upload">
-                        <label for="image">Product Image</label>
-                        <input type="file" name="image" id="image" required>
-                    </div>
-
-                    <div class="buttons">
-                        <button type="submit" class="submit" name="submit-button">Submit</button>
-                        <button type="button" class="cancel" onclick="window.location.href='index.php'">Cancel</button>
-                    </div>
-                </form>
-
+                    </form>
 
 
                 </div>

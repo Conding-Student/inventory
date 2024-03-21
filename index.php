@@ -191,6 +191,9 @@
                     <div class="adding">
                         <a href="add.php"><button>Add Product</button></a>
                     </div>
+                    <div class="adding">
+                        <a href="add_category.php"><button>Add Category</button></a>
+                    </div>
 
 
                 </div>

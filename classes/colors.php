@@ -1,6 +1,5 @@
 <?php 
-
-class Category
+class Colors
 {
     // Properties / Fields
     private $connection;
@@ -12,14 +11,14 @@ class Category
     }
 
     // Method to insert a new category
-    public function insertCategory($category_name)
+    public function insertColors($colors)
     {
         try {
             // Prepare a SQL statement
-            $statement = $this->connection->prepare("INSERT INTO category (category_name) VALUES (:category_name)");
+            $statement = $this->connection->prepare("INSERT INTO colors (color) VALUES (:color)");
 
             // Bind parameters and execute the statement
-            $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+            $statement->bindParam(':color', $colors, PDO::PARAM_STR);
             $statement->execute();
 
             // Return true if insertion is successful
@@ -36,7 +35,7 @@ class Category
     {
         try {
             // Perform database query using the connection
-            $result = $this->connection->query("SELECT * FROM category");
+            $result = $this->connection->query("SELECT * FROM colors");
 
             // Fetch data and return
             return $result->fetchAll(PDO::FETCH_OBJ);

@@ -1,6 +1,5 @@
 <?php 
-
-class Category
+class Generic_products
 {
     // Properties / Fields
     private $connection;
@@ -12,14 +11,18 @@ class Category
     }
 
     // Method to insert a new category
-    public function insertCategory($category_name)
+    public function insertGeneric_products($name,$cat_id ,$details,$img)
     {
         try {
             // Prepare a SQL statement
-            $statement = $this->connection->prepare("INSERT INTO category (category_name) VALUES (:category_name)");
+            $statement = $this->connection->prepare("INSERT INTO generic_products (name,cat_id ,details,img) 
+            VALUES (:name, :cat_id, :details,:img)");
 
             // Bind parameters and execute the statement
-            $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+            $statement->bindParam(':name', $name, PDO::PARAM_STR);
+            $statement->bindParam(':cat_id', $cat_id, PDO::PARAM_INT);
+            $statement->bindParam(':details', $details, PDO::PARAM_STR);
+            $statement->bindParam(':img', $img, PDO::PARAM_STR);
             $statement->execute();
 
             // Return true if insertion is successful
@@ -36,7 +39,7 @@ class Category
     {
         try {
             // Perform database query using the connection
-            $result = $this->connection->query("SELECT * FROM category");
+            $result = $this->connection->query("SELECT * FROM generic_products");
 
             // Fetch data and return
             return $result->fetchAll(PDO::FETCH_OBJ);
