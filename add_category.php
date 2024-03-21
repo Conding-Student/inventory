@@ -35,140 +35,140 @@
 
         <div class="wrapper">
 
-            <aside id="sidebar">
+        <aside id="sidebar">
 
-                <div class="d-flex">
+            <div class="d-flex">
 
-                    <button id="toggle-btn" type="button">
+                <button id="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button> 
+
+                
+                <div class="sidebar-logo">
+                    <img src="image/logo-nike.jpg" alt="">
+                    <a href="#">NIKE</a>
+                </div>
+
+            </div>
+
+            <div class="inner-sidebar">
+
+                
+            </div>
+
+            <ul class="sidebar-nav">
+
+                <p class="general">General</p>
+
+                <li class="sidebar-item">
+
+                    <a href="https://about.nike.com/en/company" class="sidebar-link" target="_blank">
+
+                        <i class="lni lni-home"></i>
+                        <span>Home</span>
+
+                    </a>
+
+                </li>
+
+                <li class="sidebar-item">
+
+                    <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#catalog" aria-expanded="false" aria-controls="catalog">
                         <i class="lni lni-grid-alt"></i>
-                    </button> 
+                        <span>Catalog</span>
+                    </a>
 
-                    
-                    <div class="sidebar-logo">
-                        <img src="image/logo-nike.jpg" alt="">
-                        <a href="index.php">NIKE</a>
-                    </div>
+                    <ul id="catalog" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 
-                </div>
+                        <li class="sidebar-item">
 
-                <div class="inner-sidebar">
-
-                    
-                </div>
-
-                <ul class="sidebar-nav">
-
-                    <p class="general">General</p>
-
-                    <li class="sidebar-item">
-
-                        <a href="#" class="sidebar-link">
-
-                            <i class="lni lni-home"></i>
-                            <span>Home</span>
-
-                        </a>
-
-                    </li>
-
-                    <li class="sidebar-item">
-
-                        <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#catalog" aria-expanded="false" aria-controls="catalog">
-                            <i class="lni lni-grid-alt"></i>
-                            <span>Catalog</span>
-                        </a>
-
-                        <ul id="catalog" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-
-                            <li class="sidebar-item">
-
-                                <a href="#" class="sidebar-link">Product</a>
-                                
-                            </li>   
+                            <a href="#" class="sidebar-link">Product</a>
                             
-                            <li class="sidebar-item">
+                        </li>   
+                        
+                        <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link">Collection</a>
-                                
-                            </li>
+                            <a href="#" class="sidebar-link">Collection</a>
+                            
+                        </li>
 
-                            <li class="sidebar-item">
-                                
-                                <a href="index.php" class="sidebar-link">Inventory</a>
-                                
-                            </li>
+                        <li class="sidebar-item">
+                            
+                            <a href="index.php" class="sidebar-link">Inventory</a>
+                            
+                        </li>
 
-                            <li class="sidebar-item">
+                        <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link">Orders</a>
-                                
-                            </li>
+                            <a href="https://www.nike.com/ph/cart" class="sidebar-link" target="_blank">Orders</a>
+                            
+                        </li>
 
-                        </ul>
+                    </ul>
 
-                    </li>
+                </li>
 
-                    <li class="sidebar-item">
+                <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
+                    <a href="#" class="sidebar-link" >
 
-                            <i class="lni lni-coin"></i>
-                            <span>Finances</span>
+                        <i class="lni lni-coin"></i>
+                        <span>Finances</span>
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="sidebar-item">
+                <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
+                    <a href="#" class="sidebar-link" >
 
-                            <i class="lni lni-user"></i>
-                            <span>Customers</span>
+                        <i class="lni lni-user"></i>
+                        <span>Customers</span>
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="sidebar-item">
+                <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
+                    <a href="#" class="sidebar-link" >
 
-                            <i class="lni lni-bolt-alt"></i>
-                            <span>Marketing</span>
+                        <i class="lni lni-bolt-alt"></i>
+                        <span>Marketing</span>
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <p class="general">Sales Channel</p>
+                <p class="general">Sales Channel</p>
 
-                    <li class="sidebar-item">
+                <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
-                            <i class="fa-solid fa-store"></i>
-                            <span>Online Store</span>
-                        </a>
+                    <a href="https://www.nike.com/ph" class="sidebar-link" target="_blank">
+                        <i class="fa-solid fa-store"></i>
+                        <span>Online Store</span>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <li class="sidebar-item">
+                <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
-                            <i class="lni lni-link"></i>
-                            <span>Sell Via Link</span>
-                        </a>
+                    <a href="https://www.nike.com/ph/membership" class="sidebar-link" target="_blank">
+                        <i class="lni lni-link"></i>
+                        <span>Sell Via Link</span>
+                    </a>
 
-                    </li>
+                </li>
 
-                    <div class="sidebar-footer">
-                        <a href="#" class="sidebar-link">
-                            <i class="lni lni-exit"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
+                <div class="sidebar-footer">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-exit"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
 
-                </ul>
+            </ul>
 
 
             </aside>

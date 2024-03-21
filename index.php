@@ -65,7 +65,7 @@ require "config/connection.php";
 
                     <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link">
+                        <a href="https://about.nike.com/en/company" class="sidebar-link" target="_blank">
 
                             <i class="lni lni-home"></i>
                             <span>Home</span>
@@ -103,7 +103,7 @@ require "config/connection.php";
 
                             <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link">Orders</a>
+                                <a href="https://www.nike.com/ph/cart" class="sidebar-link" target="_blank">Orders</a>
                                 
                             </li>
 
@@ -148,7 +148,7 @@ require "config/connection.php";
 
                     <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
+                        <a href="https://www.nike.com/ph" class="sidebar-link" target="_blank">
                             <i class="fa-solid fa-store"></i>
                             <span>Online Store</span>
                         </a>
@@ -157,7 +157,7 @@ require "config/connection.php";
 
                     <li class="sidebar-item">
 
-                        <a href="#" class="sidebar-link" >
+                        <a href="https://www.nike.com/ph/membership" class="sidebar-link" target="_blank">
                             <i class="lni lni-link"></i>
                             <span>Sell Via Link</span>
                         </a>
@@ -330,7 +330,7 @@ require "config/connection.php";
                                         <span>Quantity</span>
                                     </div>
                                     
-                                    <button class="add">Edit</button>
+                                    <button class="add">Submit</button>
                                     <button class="delete">Delete</button>
 
                                 </td>
