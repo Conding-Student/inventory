@@ -279,67 +279,63 @@ require "config/connection.php";
 
                 <div class="table-wrapper">
 
-                    <form action="" method="">
+                <form action="process/edit_product.php" method="post">
 
-                        <table class="styled-table">
+                    <table class="styled-table">
 
-                            <tr>
-                                <th>No</th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Inventory</th>
-                                <th>Edit</th>
-                            </tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Inventory</th>
+                            <th>Edit</th>
+                        </tr>
+
                         <?php foreach($productlist as $data):?>
-                            <tr>
+                        <tr>
+                            <td class="number"><?php echo $data->id;?></td>
 
-                                <td class="number"><?php echo $data->id;?></td>
+                            <td class="prod">
+                                <div class="image">
+                                    <img src="image/<?php echo$data->img?>" alt="image">
+                                </div>
+                                <div class="text">
+                                <p><?php echo $data->name;?></p>
+                                <p class="type"><?php echo $data->category_name;?></p>
+                                </div>
+                            </td>
 
-                                <td class="prod">
+                            <td class="price"><span>$</span><?php echo $data->price;?></td>
 
-                                    <div class="image">
-                                        <img src="image/<?php echo$data->img?>" alt="image">
-                                    </div>
+                            <td class="inventory">
+                                <div class="flex">
+                                    <p><?php echo $data->quantity?> <span class="number">Stock</p>
+                                </div>                                 
+                            </td>
 
-                                    <div class="text">
-                                       <p><?php echo $data->name;?></p>
-                                       <p class="type"><?php echo $data->category_name;?></p>
-                                    </div>
+                            <td class="edit">
+                                <div class="set">
+                                    <input type="number" name="price[<?php echo $data->id;?>]" class="no-spinner" placeholder="<?php echo $data->price?>">
+                                    <span>Price</span>
+                                </div>
+                                <div class="total">
+                                    <input type="number" name="quantity[<?php echo $data->id;?>]" class="no-spinner" placeholder="<?php echo $data->quantity?>">
+                                    <span>Quantity</span>
+                                </div>
+                                <!-- Hidden input to pass product id -->
+                                <input type="hidden" name="product_id[]" value="<?php echo $data->id;?>">
 
-                                </td>
+                                <button class="add" type="submit" name="edit_product" value="<?php echo $data->id;?>">Submit</button>
+                                <button class="delete">Delete</button>
+                            </td>
+                            
+                        </tr>
+                        <?php endforeach;?>
+                    </table>
 
-                               
-                                <td class="price"><span>$</span><?php echo $data->price;?></td>
+                </form>
 
-                                <td class="inventory">
 
-                                    <div class="flex">
-                                        <p><?php echo $data->quantity?> <span class="number">Stock</p>
-                                    </div>                                 
-                                </td>
-
-                                <td class="edit">
-                                    
-                                    <div class="set">
-                                        <input type="number" id="number" class="no-spinner" placeholder="<?php echo $data->price?>">
-                                        <span>Price</span>
-                                    </div>
-
-                                    <div class="total">
-                                        <input type="number" id="number" class="no-spinner" placeholder="<?php echo $data->quantity?>">
-                                        <span>Quantity</span>
-                                    </div>
-                                    
-                                    <button class="add">Submit</button>
-                                    <button class="delete">Delete</button>
-
-                                </td>
-                                
-                            </tr>
-                            <?php endforeach;?>
-                        </table>
-
-                    </form>
 
                 </div>
 
