@@ -1,3 +1,17 @@
+
+<?php
+require "config/connection.php";
+ // Query to select all data on the table that have admin role
+ $search = $connection->query("SELECT product.*, category.category_name 
+ FROM product 
+ JOIN category ON product.category_id = category.id");
+ 
+ 
+     $search->execute();
+     $productlist = $search->fetchAll(PDO::FETCH_OBJ); // fetching all of the data as an object
+
+
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -274,46 +288,46 @@
                                 <th>Product</th>
                                 <th>Price</th>
                                 <th>Inventory</th>
-                                <th>Edit Quantity</th>
+                                <th>Edit</th>
                             </tr>
-
+                        <?php foreach($productlist as $data):?>
                             <tr>
 
-                                <td class="number">1</td>
+                                <td class="number"><?php echo $data->id;?></td>
 
                                 <td class="prod">
 
                                     <div class="image">
-                                        <img src="image/shoes-1.jfif" alt="image">
+                                        <img src="image/<?php echo$data->img?>" alt="image">
                                     </div>
 
                                     <div class="text">
-                                       <p>Nike Air Force</p>
-                                       <p class="type">SHOES</p>
+                                       <p><?php echo $data->name;?></p>
+                                       <p class="type"><?php echo $data->category_name;?></p>
                                     </div>
 
                                 </td>
 
                                
-                                <td class="price"><span>$</span> 500</td>
+                                <td class="price"><span>$</span><?php echo $data->price;?></td>
 
                                 <td class="inventory">
 
                                     <div class="flex">
-                                        <p>100 <span class="number">Stock  / </span>1 <span class="number">Variants</span></p>
+                                        <p><?php echo $data->quantity?> <span class="number">Stock</p>
                                     </div>                                 
                                 </td>
 
                                 <td class="edit">
-
+                                    
                                     <div class="set">
                                         <input type="number" id="number" class="no-spinner" placeholder="0">
-                                        <span>SET</span>
+                                        <span>Price</span>
                                     </div>
 
                                     <div class="total">
                                         <input type="number" id="number" class="no-spinner" placeholder="0">
-                                        <span>TOTAL</span>
+                                        <span>Quantity</span>
                                     </div>
                                     
                                     <button class="add">Add</button>
@@ -322,41 +336,7 @@
                                 </td>
                                 
                             </tr>
-
-                            <tr>
-                                <td class="number">2</td>
-                                <td class="prod">
-                                    <div class="image">
-                                        <img src="image/shoes-2.jfif" alt="image">
-                                    </div>
-                                    <div class="text">
-                                       <p>Nike Air Force</p>
-                                       <p class="type">SHOES</p>
-                                    </div>
-                                </td>
-                                <td class="price"><span>$</span> 500</td>
-                                <td class="inventory">
-                                    <div class="flex">
-                                        <p>100 <span class="number">Stock  / </span>1 <span class="number">Variants</span></p>
-                                    </div>
-                                  
-                                </td>
-                                <td class="edit">
-                                    <div class="set">
-                                        <input type="number" id="number" class="no-spinner" placeholder="0">
-                                        <span>SET</span>
-                                    </div>
-                                    <div class="total">
-                                        <input type="number" id="number" class="no-spinner" placeholder="0">
-                                        <span>TOTAL</span>
-                                    </div>
-                                    
-                                    <button class="add">Add</button>
-                                    <button class="delete">Delete</button>
-                                </td>
-                                
-                            </tr>
-
+                            <?php endforeach;?>
                         </table>
 
                     </form>

@@ -5,7 +5,7 @@ try
     define("host","localhost");
     define("user","root");
     define("password","");
-    define("dbname","inventory");
+    define("dbname","itst");
 
     // Setting up a connection into the database
     $connection = new pdo("mysql:host=".host.";dbname=".dbname.";",user,password);

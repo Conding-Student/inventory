@@ -1,22 +1,16 @@
-<?php require "classes/category.php";?>
-<?php require "classes/colors.php";?>
-<?php require "classes/generic_products.php";?>
-<?php require "classes/prod_details.php";?>
-<?php require "classes/sizes.php";?>
+
 <?php require "config/connection.php";?>
 
-
-
 <?php
-// Create an instance of the Category class with the database connection
-$category = new Category($connection);
-$colors = new Colors($connection);
-$sizes = new Sizes($connection);
 
-// Fetch all categories
-$fetch_category = $category->getAll();
-$fetch_colors = $colors->getAll();
-$fetch_sizes = $sizes->getAll();
+
+ // Query to select all data on the table
+ $search = $connection->query("SELECT * FROM category");
+ $search->execute(); // executing the command
+
+ $categorylist = $search->fetchAll(PDO::FETCH_OBJ); // fetching all of the data as an object
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -205,7 +199,7 @@ $fetch_sizes = $sizes->getAll();
                             <label for="category" class="category">Category</label>
                             <select name="category_id" id="category" required>
                                 <option value="">Select Category</option>
-                                <?php foreach ($fetch_category as $data) : ?>
+                                <?php foreach ($categorylist as $data) : ?>
                                     <option value="<?php echo htmlspecialchars($data->id); ?>"><?php echo $data->category_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -213,36 +207,15 @@ $fetch_sizes = $sizes->getAll();
 
                         <div class="container">
                             <label for="quantity" class="quantity">Quantity</label>
-                            <input type="number" name="quantity" class="quantity" id="quantity" required>
+                            <input type="number" name="product_quantity" class="quantity" id="quantity" required>
                         </div>
 
                         <div class="container">
                             <label for="price" class="price">Price</label>
-                            <input type="number" name="price" class="price" id="price" required>
+                            <input type="number" name="product_price" class="price" id="price" required>
                         </div>
 
-                        <!-- Colors Selection -->
-                        <div class="container">
-                            <label for="color" class="color">Colors</label>
-                            <?php foreach ($fetch_colors as $data) : ?>
-                                <input type="checkbox" name="color_id[]" value="<?php echo htmlspecialchars($data->id); ?>">
-                                <?php echo $data->color; ?>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <!-- Sizes Selection -->
-                        <div class="container">
-                            <label for="size" class="size">Sizes</label>
-                            <?php foreach ($fetch_sizes as $data) : ?>
-                                <input type="checkbox" name="size_id[]" value="<?php echo htmlspecialchars($data->id); ?>">
-                                <?php echo $data->size; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <div class="description">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="26" rows="4"></textarea>
+                        
                     </div>
 
                     <div class="upload">

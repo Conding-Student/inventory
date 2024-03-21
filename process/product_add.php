@@ -1,83 +1,59 @@
 <?php
-// Include necessary files and establish connection
-require "../classes/category.php";
-require "../classes/colors.php";
-require "../classes/generic_products.php";
-require "../classes/prod_details.php";
-require "../classes/sizes.php";
-require "../config/connection.php";
+require "../config/connection.php"; // Include necessary files and establish connection
 
-try {
-    $category = new Category($connection);
-    $colors = new Colors($connection);
-    $generic_products = new Generic_products($connection);
-    $product_details = new Product_details($connection);
-    $sizes = new Sizes($connection);
+define("FILEPATH", "http://localhost/New folder (4)/");
 
-    // Check if form is submitted
-    if(isset($_POST["submit-button"])) {
-        // Extract form data
-        $product_name = trim($_POST['product_name']); 
-        $category_id = trim($_POST['category_id']);   
-        $product_quantity = trim($_POST['quantity']); 
-        $product_price = trim($_POST['price']);       
-        $product_description = trim($_POST['description']);
-        
-        // Process colors and sizes (assuming multiple selections)
-        $product_colors = isset($_POST['color_id']) ? $_POST['color_id'] : [];
-        $product_sizes = isset($_POST['size_id']) ? $_POST['size_id'] : [];
+function feedback($message)
+{
+    echo "<script>alert('$message');</script>";
+    //echo "<script>window.location.href='" . FILEPATH . "index.php';</script>";
+}
 
-        // Handle image upload
-        if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $image_tmp = $_FILES['image']['tmp_name'];
-            $image_name = uniqid() . '_' . $_FILES['image']['name'];
-            $location = '../image/' . $image_name;
-            move_uploaded_file($image_tmp, $location);
-        } else {
-            // Log error if file upload fails
-            error_log("File upload error: " . $_FILES['image']['error'], 3, "error_log.txt");
-            exit;  // Stop execution if there's a file upload error
-        }
+if (isset($_POST['submit-button'])) {
+    $product_name = trim($_POST['product_name']);
+    $category_id = intval($_POST['category_id']);
+    $product_price = intval($_POST['product_price']);
+    $product_quantity = intval($_POST['product_quantity']);
 
-        // Insert data into database tables
+    $product_image_tmp = $_FILES['image']['tmp_name'];
 
-        // Insert category
-        $category->insertCategory($category_id);
-        $last_id_category = $connection->lastInsertId();
-
-        // Insert colors
-        foreach($product_colors as $color) {
-            $colors->insertColors($color);
-        }
-
-        // Insert sizes
-        foreach($product_sizes as $size) {
-            $sizes->insertSizes($size);
-        }
-
-        // Insert generic product
-        $generic_products->insertGeneric_products($product_name, $last_id_category, $product_description, $image_name);
-        $last_id_generic = $connection->lastInsertId();
-
-        // Insert product details for each color and size combination
-        foreach($product_colors as $color) {
-            foreach($product_sizes as $size) {
-                $product_details->insertproduct_details($last_id_generic, $color, $size, $product_quantity, $product_price);
-            }
-        }
-
-        // Redirect after successful submission
-        header("Location: ../add_product.php?success=true");
-        exit();
-    } else {
-        // Redirect if form is not submitted
-        header("Location: ../index.php");
-        exit();
+    if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        feedback("File upload failed with error code: " . $_FILES['image']['error']);
+        exit;
     }
-} catch(PDOException $error) {
-    // Log or display an error message if a PDOException occurs
-    error_log("Database error: " . $error->getMessage(), 3, "error_log.txt");
-    // Optionally, display an error message to the user
-    echo "An error occurred. Please try again later.";
+
+    $format = explode('.', $_FILES['image']['name']);
+    $actualName = strtolower($format[0]);
+    $actualFormat = strtolower($format[1]);
+    $allowedFormats = ['jpg', 'png', 'jpeg', 'gif'];
+
+    $image_name = $actualName . '.' . $actualFormat;
+    if (in_array($actualFormat, $allowedFormats)) {
+        $location = '../image/' . $actualName . '.' . $actualFormat;
+
+        $insert = $connection->prepare('INSERT INTO product (category_id, name, quantity, price, img) 
+        VALUES (:category_id, :product_name, :product_quantity, :product_price, :image)');
+        $insert->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+        $insert->bindParam(':product_name', $product_name, PDO::PARAM_STR);
+        $insert->bindParam(':product_price', $product_price, PDO::PARAM_INT);
+        $insert->bindParam(':product_quantity', $product_quantity, PDO::PARAM_INT);
+        $insert->bindParam(':image', $image_name, PDO::PARAM_STR);
+
+
+        if ($insert->execute()) {
+            if (move_uploaded_file($product_image_tmp, $location)) {
+                header("Location: " . FILEPATH . "index.php");
+                exit();
+            } else {
+                feedback("Error moving uploaded file!");
+            }
+        } else {
+            feedback("Error adding product!");
+        }
+    } else {
+        feedback("Invalid file format!");
+    }
+} else {
+    feedback("Button has not yet been clicked!");
 }
 ?>

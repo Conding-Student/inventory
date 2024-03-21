@@ -1,55 +1,37 @@
 <?php
-try {
-    require "../classes/Category.php"; // Assuming your class file is named Category.php
-    require "../config/connection.php";
+require "../config/connection.php";
+define("FILEPATH","http://localhost/New folder (4)/");
+function feedback($message)
+{
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location.href='" . FILEPATH . "/index.php';</script>";
+}
 
-    // Instantiate the Category class with the database connection
-    $category_table = new Category($connection);
+if (isset($_POST['submit-button'])) {
+    $name = trim($_POST['category']);
 
-    if(isset($_POST["submit-button"])) 
+    // Check if the category already exists
+    $search = $connection->prepare('SELECT COUNT(*) FROM category WHERE category_name = :name');
+    $search->bindParam(':name', $name, PDO::PARAM_STR);
+    $search->execute();
+    $name_count = $search->fetchColumn();
+
+    if ($name_count == 0) 
     {
-        $category_name = htmlspecialchars(trim($_POST['category'])); // Assuming your form field name is 'category'
+        // Category does not exist, insert into the database
+        $insert = $connection->prepare('INSERT INTO category (category_name) VALUES (:name)');
+        $insert->bindParam(':name', $name, PDO::PARAM_STR);
 
-        // Check if category name is empty
-        if(empty($category_name)) 
-        {
-            $error_message = "Category name is empty.";
-        } 
-        else 
-        {
-            // Insert the category into the database
-            $result = $category_table->insertCategory($category_name);
-            if ($result) 
-            {
-                header("Location: ../add_category.php");
-                exit(); // Make sure to exit after redirection
-            } 
-            else 
-            {
-                $error_message = "Failed to insert category into the database.";
-            }
+        if ($insert->execute()) {
+            echo "<script>window.location.href='" . FILEPATH . "/index.php';</script>";
+        } else {
+            feedback("Error creating category!");
         }
+    } else {
+        // Category already exists
+        feedback("Category already listed!");
     }
-
-    if(isset($_POST["cancel-button"])) 
-    {
-        header("Location: ../index.php");
-        exit(); // Make sure to exit after redirection
-    }
-
-    } 
-    catch (PDOException $error) 
-    {
-        // Log the error to the error log file
-        error_log("Database error: " . $error->getMessage() . "\n", 3, "error_log.txt");
-        $error_message = "An error occurred. Please try again later.";
-    }
-
-    // Redirect to index.php with error message if there's an error
-    if (isset($error_message)) 
-    {
-        header("Location: ../index.php?error=" . urlencode($error_message));
-        exit(); // Make sure to exit after redirection
-    }
-    
+} else {
+    feedback("Button has not yet been clicked!");
+}
 ?>
