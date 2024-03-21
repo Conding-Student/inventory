@@ -66,13 +66,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Add click event listener to submit button
     submitButton.addEventListener("click", function() {
-        // Navigate back to index.html when submit button is clicked
-        window.location.href = "index.html";
+        // Navigate back to index when submit button is clicked
+        window.location.href = "index.php";
     });
 
     // Add click event listener to cancel button
     cancelButton.addEventListener("click", function() {
-        // Navigate back to index.html when cancel button is clicked
-        window.location.href = "index.html";
+        // Navigate back to index when cancel button is clicked
+        window.location.href = "index.php";
     });
 });

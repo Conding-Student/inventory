@@ -46,7 +46,7 @@
                     
                     <div class="sidebar-logo">
                         <img src="image/logo-nike.jpg" alt="">
-                        <a href="index.html">NIKE</a>
+                        <a href="index.php">NIKE</a>
                     </div>
 
                 </div>

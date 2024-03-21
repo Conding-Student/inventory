@@ -97,7 +97,7 @@ require "config/connection.php";
 
                             <li class="sidebar-item">
                                 
-                                <a href="index.html" class="sidebar-link">Inventory</a>
+                                <a href="index.php" class="sidebar-link">Inventory</a>
                                 
                             </li>
 
@@ -321,16 +321,16 @@ require "config/connection.php";
                                 <td class="edit">
                                     
                                     <div class="set">
-                                        <input type="number" id="number" class="no-spinner" placeholder="0">
+                                        <input type="number" id="number" class="no-spinner" placeholder="<?php echo $data->price?>">
                                         <span>Price</span>
                                     </div>
 
                                     <div class="total">
-                                        <input type="number" id="number" class="no-spinner" placeholder="0">
+                                        <input type="number" id="number" class="no-spinner" placeholder="<?php echo $data->quantity?>">
                                         <span>Quantity</span>
                                     </div>
                                     
-                                    <button class="add">Add</button>
+                                    <button class="add">Edit</button>
                                     <button class="delete">Delete</button>
 
                                 </td>

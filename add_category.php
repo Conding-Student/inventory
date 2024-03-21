@@ -1,3 +1,17 @@
+<?php require "config/connection.php";?>
+
+<?php
+
+
+ // Query to select all data on the table
+ $search = $connection->query("SELECT * FROM category");
+ $search->execute(); // executing the command
+
+ $categorylist = $search->fetchAll(PDO::FETCH_OBJ); // fetching all of the data as an object
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +46,7 @@
                     
                     <div class="sidebar-logo">
                         <img src="image/logo-nike.jpg" alt="">
-                        <a href="index.html">NIKE</a>
+                        <a href="index.php">NIKE</a>
                     </div>
 
                 </div>
